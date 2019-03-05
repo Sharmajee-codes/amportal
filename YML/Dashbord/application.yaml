@@ -1,0 +1,26 @@
+application:
+- CRM:
+  app_name: CRM
+  remarks: 
+    - "After executing maintenance successfully, please do the following to ensure that the application is running"
+    - Open browser
+    - Go the URL http://prod.app.com
+    - Ensure that the page loads completely
+  scipt_name: sample.bat
+  logfile: sample.log
+  user: {admin: admin,ankit: ankit}
+- UNO:
+  app_name: UNO
+  remarks: 
+    - some remark
+  scipt_name: uno_maintenance.sh
+  logfile: uno_maintenance.log
+  user: {admin: admin,abhi: abhi}
+- TEST:
+  app_name: TEST
+  remarks:
+   - some remarks
+  scipt_name: crm_maintenance_test.sh
+  logfile: crm_maintenance_test.log
+  user: {admin: admin,test4: test4, ankit: ankit}
+ 

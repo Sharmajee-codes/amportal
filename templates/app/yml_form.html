@@ -1,0 +1,224 @@
+{% extends 'layout/main.html' %}
+{% block content %}
+  
+
+        <nav class="navbar navbar-expand-md navbar-light bg-white fixed-top border-bottom border-opacity border-primary">
+                <a class="navbar-brand" href="#"> 
+                    <span class="pr-2"><img src="/resource/images/AMP-Logo.svg" width="120px" height="28px"></span> 
+                    <span class="d-inline-block border-left pl-2"><img src="/resource/images/max-life-logo.svg" width="70px"></span></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+          
+                <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+                  <ul class="navbar-nav flex-row ml-md-auto d-md-flex">
+                      <!-- <li class="nav-item dropdown">
+                          <a class="nav-link " href="/ymlform/yml_form">Home</a>
+
+                      </li> -->
+                    <!-- <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dashboard</a>
+                      <div class="dropdown-menu" aria-labelledby="dropdown01">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                      </div>
+                    </li> -->
+                  </ul>
+                    <span id="username"  class="fa fa-user-circle-o" ><i aria-hidden="true"></i> {{username }} </span>
+                    <a href="/authentication/logout" class="btn btn-primary my-2 my-sm-0 text-uppercase  btn-sm" type="submit"> <span><img src="/resource/images/power-btn-icon.svg " width="15px;"></span> LogOut</a>
+
+                </div>
+              </nav>
+              
+              <div class="container-fluid">
+                <div id="progressbar"></div>
+                    <div class="row">
+                      <nav class="col-md-3 d-none d-md-block bg-light sidebar pl-4 pr-4">
+                        <div class="sidebar-sticky">
+                          <ul class="nav flex-column">
+                            <li class="nav-item">
+                              <h6 class="text-uppercase pl-0 text-color-secondary pt-3 font-weight-bold" href="#">
+                                Select Application
+                              </h6>
+
+                              <!-- <form> -->
+                                    <div class="form-group">
+                                            
+                                            <select class="form-control form-control-lg border-grey-dark" id="exampleFormControlSelect2">
+                                              <option id="#">Select Application</option>
+                                               {% for item in application %}
+                                               <option id="{{ item }}" value="{{ item }}">{{ item }}</option>
+                                                {% endfor %}
+                                            </select>
+                                          </div>
+
+                              <!-- </form> -->
+                            </li>
+                            <!-- <progress id="progBar" max="100" value="0"></progress> -->
+                        </div>
+                      </nav>
+                      
+                      <main role="main" class="col-md-9 ml-sm-auto col-lg-9 px-4 command-stat">
+                       <div class="alert alert-warning" style="display: none;margin: 4px;">
+                          <strong>Warning!</strong> Please wait for the output to be displayed and don't refresh / reload the web page once you have clicked the Submit button.
+                      </div>
+                            <div class="mr-0 ml-0 mt-4 mb-4 p-4 bg-white row rounded">
+
+                                    <div class="col-lg-12">
+
+                                        <h6 class="text-uppercase text-color-secondary font-weight-bold">Initiate application maintenance</h6>
+                                      <!--   <p class="text-left font-weight-light text-grey pb-1 font-14">Run to perform the execution output</p> -->
+                                        <div class="row mb-4 height-120">
+                                          <div class="col-lg-2 col-sm-12 d-flex flex-row mb-1">
+                                              <button type="button" class="text-center btn-run btn btn-outline-primary width-full " id="sccript">
+                                                  <span class="icon d-inline-block mt-1 p-0"></span> 
+                                                  <span class="d-block text-uppercase font-14">RUN</span> 
+                                               </button>
+                                          </div>
+
+                                          <div class="col-lg-10  col-sm-12 mb-1">
+                                          <div class="form-group mb-0">
+                                          
+                                            <textarea class="height-120 form-control border-grey-dark" id="script_output" rows="3" readonly></textarea>
+                                          </div>
+                                        </div>
+                                        </div>
+                                   
+                                   
+                                      </div>
+
+
+                                    <div class="col-lg-12">
+
+                                            <h6 class="text-uppercase text-color-secondary font-weight-bold">Applicatioin maintenance logs</h6>
+                                            <!-- <p class="text-left font-weight-light text-grey pb-1 font-14">Exception logs through Show logs</p> -->
+                                        
+                                            <div class="row mb-4 height-120">
+                                                <div class="col-lg-2 col-sm-12  d-flex flex-row mb-1">
+                                                    <button type="button" class="text-center btn-showlog btn btn-outline-primary width-full " id="showlogs">
+                                                        <span class="icon d-inline-block mt-1 p-0"></span> 
+                                                        <span class="d-block text-uppercase font-14">Show Logs</span> 
+                                                     </button>
+                                                </div>
+      
+                                                <div class="col-lg-10 col-sm-12 mb-1">
+                                                <div class="form-group mb-0">
+                                                
+                                                  <textarea class="height-120 form-control border-grey-dark" id="logs" rows="3" readonly></textarea>
+                                                </div>
+                                              </div>
+                                              </div>
+                                        
+                                          </div>
+
+                                        <div class="col-xl-12">
+
+                                          <h6 class="text-uppercase text-color-secondary font-weight-bold">remarks</h6>
+                                          <div class="printableArea" id="printableArea">
+
+                                          </div>
+                                         </div>
+
+                            </div>
+                      </main>
+                    </div>
+                  </div>
+
+
+ 
+
+  <!--  <script src="/resource/js/vendor/jquery-slim.min.js"></script>
+   <script>window.jQuery || document.write('<script src="/resource/js/vendor/jquery-slim.min.js"><\/script>')</script> -->
+    <script src="/resource/js/jquery-3.3.1.min.js"></script>
+	<script language="javascript">
+        javascript.window.history.forward(1);
+</script>
+   <script type="text/javascript">
+   
+      var selectedValue = '';
+    // Jquery Read yaml for displaying Dashbord 
+   
+      $(document).ready(function() {
+        
+        $("#exampleFormControlSelect2").change(function (e) {
+              selectedValue = $(this).val();
+              //$('.command-stat').empty();
+              document.getElementById('script_output').innerHTML ='';
+              document.getElementById('logs').innerHTML = '';
+              $(".command-stat").show();
+              show_remark(selectedValue)
+              //xhr.upload.addEventListener("progress", updateProgress, false);
+              //console.log(selectedValue);
+        });
+      });
+
+      function show_remark(selectedAppValue)
+      {
+        //console.log("selceted id " + selectedAppValue);
+
+         $.post('/showremark/remark', {"appname": selectedAppValue}).done(function(res) {
+                 var myObj = JSON.parse(res);
+                  //console.log(myObj);
+                  var inner = '';
+                for(i=0; i < myObj.length; i++) {
+                     inner += "<li>"+myObj[i]+"</li>";
+                }
+                $('#printableArea').html(inner);
+                 // document.getElementById('printableArea').innerHTML = myObj;
+               });
+      }
+
+  $(function () {
+    $("#sccript").click(function () {
+        $('.alert').css('display','block');
+        var selectedText = $("#exampleFormControlSelect2").find("option:selected").text();
+        var selectedValue = $("#exampleFormControlSelect2").val();
+        document.getElementById('script_output').innerHTML = '';
+        //console.log("Selected Text: " + selectedText + " Value: " + selectedValue);
+        var postdata = {name: selectedValue};
+        document.getElementById('script_output').innerHTML = "Command execution in progress, please wait for it to finish !"
+              $.post('/script/runscript', {"myFile": selectedValue})
+                .done(function(res) {
+                  //var myObj = JSON.parse(res);
+		    var myObj = res;
+                  //console.log(res);
+                  document.getElementById('script_output').innerHTML = myObj;
+                   $('.alert').css('display','none');
+               });
+          //e.preventDefault();
+        });
+    });
+
+$(function () {
+    $("#showlogs").click(function () {
+      $('.alert').css('display','block');
+        var selectedText = $("#exampleFormControlSelect2").find("option:selected").text();
+        var selectedValue = $("#exampleFormControlSelect2").val();
+        document.getElementById('logs').innerHTML = '';
+        //console.log("Selected Text: " + selectedText + " Value: " + selectedValue);
+        
+        
+        var postdata = {name: selectedValue};
+         //setTimeout(function() {
+          document.getElementById('logs').innerHTML = "Command execution in progress, please wait for it to finish !"
+
+              $.post('/showlogs/viewlogs', {"myFile": selectedValue})
+                .done(function(res) {
+                  var myObj = JSON.parse(res); $('.alert').css('display','none');
+                  //console.log(res);
+                  document.getElementById('logs').innerHTML = myObj['logs'];
+                 
+               });
+            //e.preventDefault();
+            
+      });
+    
+  });
+
+    </script>
+   <script src="/resource/js/vendor/popper.min.js"></script>
+   <script src="/resource/js/vendor/bootstrap.min.js"></script>
+
+  {% endblock %}
+
